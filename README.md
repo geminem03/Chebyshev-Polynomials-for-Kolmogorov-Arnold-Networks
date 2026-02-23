@@ -1,1 +1,3 @@
 # Chebyshev-Polynomials-for-Kolmogorov-Arnold-Networks
+
+The Chebyshev ApproachTraditional Kolmogorov-Arnold Networks (KANs) utilize B-splines on their edges to learn non-linear relationships. While effective in software, B-splines are computationally expensive for FPGAs because they require complex piecewise logic and frequent memory lookups.This project replaces B-splines with Chebyshev Polynomials. By using the Chebyshev recurrence relation $T_n(x) = 2xT_{n-1}(x) - T_{n-2}(x)$, we can evaluate non-linearities using standard Multiply-Accumulate (MAC) operations. This allows for a hardware architecture that is significantly faster and more area-efficient than traditional spline-based implementations.
