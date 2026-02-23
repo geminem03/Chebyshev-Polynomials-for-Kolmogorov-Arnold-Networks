@@ -14,10 +14,6 @@ we can evaluate non-linearities using standard Multiply-Accumulate (MAC) operati
 
 The system is designed to accelerate a **64×64 fully connected KAN layer** with **Degree 3 polynomials**.
 
-## File Structure
-
-### 1. Hardware Logic (RTL)
-
 - `cheby_quad.sv`  
   The core compute engine. Implements the 4-thread staggered pipeline for Degree 3 Chebyshev polynomials.
 
@@ -27,7 +23,7 @@ The system is designed to accelerate a **64×64 fully connected KAN layer** with
 - `ram_bank_64.sv`  
   A parameterized RAM wrapper that loads coefficients from `.mem` files into M20K memory blocks.
 
-### 2. Machine Learning
+## Machine Learning
 
 - `ml_benchmarks/`  
   Contains the Python/PyTorch scripts used to validate the model's accuracy and parameter efficiency against standard MLPs.
