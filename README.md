@@ -10,13 +10,9 @@ Tₙ(x) = 2xTₙ₋₁(x) − Tₙ₋₂(x)
 
 we can evaluate non-linearities using standard Multiply-Accumulate (MAC) operations. This allows for a hardware architecture that is significantly faster and more area-efficient than traditional spline-based implementations.
 
----
-
 ## Hardware Architecture
 
 The system is designed to accelerate a **64×64 fully connected KAN layer** with **Degree 3 polynomials**.
-
----
 
 ## Key Innovations
 
@@ -45,8 +41,6 @@ Final results are:
 - Saturated (clamped)  
 - Converted back to **16-bit signed integers** for the next layer  
 
----
-
 ## File Structure
 
 ### 1. Hardware Logic (RTL)
@@ -59,8 +53,6 @@ Final results are:
 
 - `ram_bank_64.sv`  
   A parameterized RAM wrapper that loads coefficients from `.mem` files into M20K memory blocks.
-
----
 
 ### 2. Machine Learning
 
