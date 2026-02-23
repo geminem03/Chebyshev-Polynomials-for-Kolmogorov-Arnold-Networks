@@ -14,33 +14,6 @@ we can evaluate non-linearities using standard Multiply-Accumulate (MAC) operati
 
 The system is designed to accelerate a **64×64 fully connected KAN layer** with **Degree 3 polynomials**.
 
-## Key Innovations
-
-### Staggered Quad-Core Pipeline
-
-To solve the bottleneck caused by recursive data dependencies, each Processing Element (PE) processes **4 independent polynomial inputs (A, B, C, D)** simultaneously.
-
-This staggers the inputs to ensure **100% utilization of DSP blocks**, eliminating idle cycles while waiting for recursive results.
-
-### Massive Parallelism
-
-The design instantiates **64 individual `cheby_quad` engines** to compute **256 polynomial edges in parallel**.
-
-### Distributed Memory Banks
-
-Weight data is stored across **64 independent M20K RAM blocks**.
-
-Each bank provides a private silo of coefficients to its dedicated PE, ensuring maximum data bandwidth.
-
-### Precision & Requantization
-
-The controller uses a **22-bit widened accumulator** to prevent overflow during the summation of 64 edges.
-
-Final results are:
-- Requantized  
-- Saturated (clamped)  
-- Converted back to **16-bit signed integers** for the next layer  
-
 ## File Structure
 
 ### 1. Hardware Logic (RTL)
