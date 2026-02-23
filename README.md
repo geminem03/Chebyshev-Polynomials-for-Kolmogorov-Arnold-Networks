@@ -23,6 +23,18 @@ The system is designed to accelerate a **64×64 fully connected KAN layer** with
 - `ram_bank_64.sv`  
   A parameterized RAM wrapper that loads coefficients from `.mem` files into M20K memory blocks.
 
+## Performance Metrics (64×64 Layer)
+
+| Metric | Result |
+|--------|--------|
+| Logic Utilization | 10,534 ALMs |
+| Total DSP Blocks | 64 |
+| Total Memory Bits | 266,114 (M20K) |
+| Max Frequency ($F_{max}$) | 266.81 MHz |
+| Number of Cycles | 70 |
+| Latency | 268.87 ns |
+
+
 ## Machine Learning
 
 - `ml_benchmarks/`  
