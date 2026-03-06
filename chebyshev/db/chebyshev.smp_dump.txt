@@ -1,0 +1,10 @@
+
+State Machine - |layer|state
+Name state.FINISH state.ACCUM_2 state.ACCUM_1 state.COMPUTE state.FETCH state.WAIT_FIRST_QUAD state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.WAIT_FIRST_QUAD 0 0 0 0 0 1 1 
+state.FETCH 0 0 0 0 1 0 1 
+state.COMPUTE 0 0 0 1 0 0 1 
+state.ACCUM_1 0 0 1 0 0 0 1 
+state.ACCUM_2 0 1 0 0 0 0 1 
+state.FINISH 1 0 0 0 0 0 1 

@@ -1,0 +1,294 @@
+# Reading pref.tcl
+# do layer_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Skule_Hardrive/kan-tpu/chebyshev {C:/Skule_Hardrive/kan-tpu/chebyshev/pe_quad.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:56:19 on Mar 01,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Skule_Hardrive/kan-tpu/chebyshev" C:/Skule_Hardrive/kan-tpu/chebyshev/pe_quad.sv 
+# -- Compiling module pe_quad
+# 
+# Top level modules:
+# 	pe_quad
+# End time: 20:56:19 on Mar 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+C:/Skule_Hardrive/kan-tpu/chebyshev {C:/Skule_Hardrive/kan-tpu/chebyshev/layer.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:56:19 on Mar 01,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Skule_Hardrive/kan-tpu/chebyshev" C:/Skule_Hardrive/kan-tpu/chebyshev/layer.sv 
+# -- Compiling module layer
+# 
+# Top level modules:
+# 	layer
+# End time: 20:56:19 on Mar 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+cd ../..
+# reading modelsim.ini
+pwd
+# C:/Skule_Hardrive/kan-tpu/chebyshev
+do run_layer.do
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work work 
+# Modifying modelsim.ini
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:56:32 on Mar 01,2026
+# vlog -reportprogress 300 -sv pe_quad.sv 
+# -- Compiling module pe_quad
+# 
+# Top level modules:
+# 	pe_quad
+# End time: 20:56:32 on Mar 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:56:32 on Mar 01,2026
+# vlog -reportprogress 300 -sv layer.sv 
+# -- Compiling module layer
+# 
+# Top level modules:
+# 	layer
+# End time: 20:56:32 on Mar 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:56:32 on Mar 01,2026
+# vlog -reportprogress 300 -sv tb_layer.sv 
+# -- Compiling module tb_layer
+# 
+# Top level modules:
+# 	tb_layer
+# End time: 20:56:32 on Mar 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -suppress 2685,3722 -voptargs="+acc" -L altera_mf_ver -L lpm_ver work.tb_layer 
+# Start time: 20:56:32 on Mar 01,2026
+# Loading sv_std.std
+# Loading work.tb_layer
+# Loading work.layer
+# Loading altera_mf_ver.altsyncram
+# Loading work.pe_quad
+# Loading altera_mf_ver.altsyncram_body
+# Loading altera_mf_ver.ALTERA_DEVICE_FAMILIES
+# Loading altera_mf_ver.ALTERA_MF_MEMORY_INITIALIZATION
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: gemma  Hostname: ZEUS  ProcessID: 16120
+#           Attempting to use alternate WLF file "./wlftfj0rxb".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftfj0rxb
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_layer/uut/state'.
+# Error in macro ./run_layer.do line 21
+# ** UI-Msg: (vish-4014) No objects found matching '/tb_layer/uut/state'.
+#     while executing
+# "add wave -position insertpoint sim:/tb_layer/uut/state"
+run -all
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[0].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[1].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[2].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[3].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[4].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[5].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[6].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[7].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[8].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[9].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[10].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[11].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[12].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[13].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[14].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[15].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[16].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[17].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[18].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[19].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[20].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[21].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[22].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[23].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[24].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[25].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[26].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[27].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[28].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[29].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[30].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[31].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[32].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[33].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[34].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[35].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[36].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[37].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[38].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[39].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[40].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[41].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[42].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[43].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[44].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[45].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[46].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[47].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[48].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[49].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[50].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[51].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[52].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[53].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[54].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[55].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[56].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[57].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[58].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[59].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[60].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[61].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[62].weight_ram.m_default.altsyncram_inst
+# Warning: RAM block type is assumed as     AUTO
+# Time: 0  Instance: tb_layer.dut.pes[63].weight_ram.m_default.altsyncram_inst
+# =========================================================
+#  Starting Chebyshev Layer Testbench
+# =========================================================
+# PASS PE[0] | Value: 5248
+# PASS PE[1] | Value: 5324
+# PASS PE[2] | Value: 5402
+# PASS PE[3] | Value: 5486
+# PASS PE[4] | Value: 5568
+# PASS PE[5] | Value: 5654
+# PASS PE[6] | Value: 5730
+# PASS PE[7] | Value: 5816
+# PASS PE[8] | Value: 5894
+# PASS PE[9] | Value: 5982
+# PASS PE[10] | Value: 6064
+# PASS PE[11] | Value: 6136
+# PASS PE[12] | Value: 6218
+# PASS PE[13] | Value: 6310
+# PASS PE[14] | Value: 6388
+# PASS PE[15] | Value: 6472
+# PASS PE[16] | Value: 6556
+# PASS PE[17] | Value: 6626
+# PASS PE[18] | Value: 6720
+# PASS PE[19] | Value: 6794
+# PASS PE[20] | Value: 6870
+# PASS PE[21] | Value: 6960
+# PASS PE[22] | Value: 7044
+# PASS PE[23] | Value: 7116
+# PASS PE[24] | Value: 7210
+# PASS PE[25] | Value: 7288
+# PASS PE[26] | Value: 7372
+# PASS PE[27] | Value: 7454
+# PASS PE[28] | Value: 7534
+# PASS PE[29] | Value: 7612
+# PASS PE[30] | Value: 7694
+# PASS PE[31] | Value: 7774
+# PASS PE[32] | Value: 7868
+# PASS PE[33] | Value: 7936
+# PASS PE[34] | Value: 8030
+# PASS PE[35] | Value: 8108
+# PASS PE[36] | Value: 8188
+# PASS PE[37] | Value: 8280
+# PASS PE[38] | Value: 8354
+# PASS PE[39] | Value: 8428
+# PASS PE[40] | Value: 8518
+# PASS PE[41] | Value: 8602
+# PASS PE[42] | Value: 8678
+# PASS PE[43] | Value: 8764
+# PASS PE[44] | Value: 8840
+# PASS PE[45] | Value: 8926
+# PASS PE[46] | Value: 9016
+# PASS PE[47] | Value: 9084
+# PASS PE[48] | Value: 9170
+# PASS PE[49] | Value: 9256
+# PASS PE[50] | Value: 9340
+# PASS PE[51] | Value: 9416
+# PASS PE[52] | Value: 9498
+# PASS PE[53] | Value: 9578
+# PASS PE[54] | Value: 9668
+# PASS PE[55] | Value: 9746
+# PASS PE[56] | Value: 9824
+# PASS PE[57] | Value: 9912
+# PASS PE[58] | Value: 9992
+# PASS PE[59] | Value: 10074
+# PASS PE[60] | Value: 10152
+# PASS PE[61] | Value: 10240
+# PASS PE[62] | Value: 10320
+# PASS PE[63] | Value: 10390
+# =========================================================
+#  SUCCESS! All 64 PE outputs match the Hamiltonian Reference.
+# ---------------------------------------------------------
+#  Total Cycles : 390
+# =========================================================
+# ** Note: $stop    : tb_layer.sv(224)
+#    Time: 4005 ns  Iteration: 2  Instance: /tb_layer
+# Break in Module tb_layer at tb_layer.sv line 224
+# End time: 21:00:19 on Mar 01,2026, Elapsed time: 0:03:47
+# Errors: 0, Warnings: 2
