@@ -17,5 +17,5 @@ scaler = MinMaxScaler(feature_range=(-1, 1))
 df[columns[:-1]] = scaler.fit_transform(df[columns[:-1]])
 
 # 4. Save for your training scripts
-df.to_csv('nasa_airfoil_data.csv', index=False)
+df.to_csv('../data_test/nasa_airfoil_data.csv', index=False)
 print("NASA Airfoil data preprocessed and saved to 'nasa_airfoil_data.csv'")

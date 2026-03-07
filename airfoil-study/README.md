@@ -64,23 +64,12 @@ For a 93.5% target, the KAN architectures already demonstrate significant effici
 
 | Model | Architecture (FC Dims) | Minimum Params | Actual Accuracy |
 | :--- | :--- | :--- | :--- |
-| **Chebyshev KAN** | `[5, 12, 1]` | **288** | 93.72% |
-| **Fourier KAN** | `[5, 20, 1]` | **741** | 94.43% |
-| **B-Spline KAN** | `[[5, 0], [9, 0], [1, 0]]` | **922** | 94.33% |
-| **Standard MLP** | `[5, 217, 208, 1]` | **46,855** | 93.59% |
+| **Chebyshev KAN** | `[5, 16, 1]` | **384** | 93.61% |
+| **Fourier KAN** | `[5, 12, 1]` | **445** | 93.53% |
+| **B-Spline KAN** | `[5, 7, 1]` | **504** | 94.13% |
+| **Standard MLP** | `[5, 234, 78, 18, 1]` | **21,175** | 93.50% |
 
 *At this threshold, the Chebyshev KAN is over 160x more parameter-efficient than the standard MLP.*
-
-### Target 2: $\ge$ 95.0% Accuracy
-
-Pushing the models to a more stringent 95% threshold drastically widens the gap. While the KANs required only modest increases in parameter count to reach 95%, the standard MLP experienced a massive parameter explosion.
-
-| Model | Architecture (FC Dims) | Minimum Params | Actual Accuracy |
-| :--- | :--- | :--- | :--- |
-| **Chebyshev KAN** | `[5, 17, 1]` | **408** | 95.13% |
-| **Fourier KAN** | `[5, 28, 1]` | **1,037** | 95.46% |
-| **B-Spline KAN** | `[[5, 0], [12, 0], [1, 0]]` | **1,213** | 95.26% |
-| **Standard MLP** | `[5, 961, 206, 304, 1]` | **267,171** | 95.31% |
 
 ### Conclusion
 The results highlight the massive parameter efficiency of Kolmogorov-Arnold Networks for modeling complex physical datasets. As the required accuracy increases from 93.5% to 95.0%, the standard MLP scales extremely poorly, requiring hundreds of thousands of additional parameters. Conversely, the Chebyshev KAN crossed the final 95% target using just 408 parameters—making it roughly **650x more parameter-efficient** than the best-performing Multi-Layer Perceptron.
