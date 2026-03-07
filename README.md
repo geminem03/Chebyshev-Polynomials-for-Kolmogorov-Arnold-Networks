@@ -38,4 +38,4 @@ The system is designed to accelerate a **64×64 fully connected KAN layer** with
 ## Machine Learning
 
 - `airfoil-study/`  
-  Contains the Python/PyTorch scripts used to validate the model's accuracy and parameter efficiency against standard MLPs.
+  
