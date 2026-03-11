@@ -1,13 +1,13 @@
 # Chebyshev KAN Layer Hardware Implementation
 
-This repository implements a hardware-accelerated Kolmogorov–Arnold Network (KAN) layer using Chebyshev polynomial basis functions, optimized for Intel Arria 10 FPGAs.
+This repository implements a **hardware-accelerated Kolmogorov–Arnold Network (KAN) layer** using **Chebyshev polynomial basis functions**.
 
 The design focuses on:
 
-- Minimal DSP usage  
-- High clock frequency  
-- Fully parallel polynomial evaluation  
-- Bit-accurate hardware/software verification  
+- Minimal DSP usage
+- High clock frequency
+- Fully parallel polynomial evaluation
+- Bit-accurate hardware/software verification using a custom Python emulator
 
 ---
 
@@ -19,8 +19,7 @@ $$
 y(x) = \sum_{k=0}^{n} c_k T_k(x)
 $$
 
-Direct evaluation requires many multipliers.  
-Instead, we use **Clenshaw’s Recurrence**, which computes the polynomial using a recursive formulation:
+Direct evaluation requires many multipliers. Instead, we use **Clenshaw’s Recurrence**, which computes the polynomial using a recursive formulation:
 
 $$
 b_k(x) = c_k + 2x\,b_{k+1}(x) - b_{k+2}(x)
@@ -32,15 +31,10 @@ $$
 y(x) = b_0 - b_2
 $$
 
-### Why This Matters
+Using **Clenshaw’s method**:
 
-Using Clenshaw’s method:
-
-- Only **one multiplier per Processing Engine (PE)** is required  
-- Polynomial degree becomes a memory scaling problem  
-- DSP utilization remains constant as degree increases  
-
-This dramatically improves FPGA efficiency.
+- Polynomial degree becomes a **memory scaling problem**, not a logic scaling problem.
+- **DSP utilization remains highly efficient** as the polynomial degree increases.
 
 ---
 
@@ -48,94 +42,52 @@ This dramatically improves FPGA efficiency.
 
 ## Processing Engine (`pe_quad.sv`)
 
-The PE is the computational core.
+The PE is the **computational core**. It processes inputs in groups of four simultaneously:
 
-To achieve ~234.85 MHz on Arria 10 silicon, the engine uses:
-
-- A **5-stage DSP pipeline**
-- A **time-division multiplexed (TDM)** architecture
-- A 5-cycle recurrence loop with a deliberate pipeline "bubble"
-
-Four inputs (A, B, C, D) share one multiplier.  
-The 5th cycle ensures safe register updates and prevents recurrence hazards.
-
-**Result:**
-
-- 1 DSP per PE  
-- Fully pipelined execution  
-- Deterministic timing  
+- **Inputs:** A, B, C, D
+- **4-Stage Pipeline:** Calculates the Chebyshev polynomial via Clenshaw recurrence
+- **Native Fixed-Point Math:** Uses **Q5.10 radix point** fixed-point arithmetic
 
 ---
 
 ## Layer Controller (`layer.sv`)
 
-The top-level `layer` module manages:
-
-- Input streaming  
-- Weight memory access  
-- Global accumulation  
+The **top-level layer module** orchestrates the PEs and manages memory and accumulation.
 
 ### Parallel Memory Architecture
 
-- 64 independent M20K RAM blocks  
-- One dedicated memory per PE  
-- No memory contention  
+- Each output PE has a **dedicated M20K RAM block**
+- Completely eliminates **memory contention**
 
-All 64 PEs evaluate their Chebyshev polynomials simultaneously, enabling true spatial parallelism.
+### 22-Bit Accumulation
 
----
+Hardware chunks inputs into groups of 4, streaming them to the PEs and safely summing **up to 64 Clenshaw results** into a **22-bit accumulator** to prevent integer overflow.
 
-# Testcase Generation
+### Serialized Requantization
 
-The Python script generates Hamiltonian phase-space test data.
+Once accumulation finishes, the layer executes a **serialized requantization phase**.
 
-Each PE models:
+It sequentially walks through the **22-bit accumulators** using a **single shared multiplier**, applying:
 
-$$
-E(q) = \frac{1}{2} k q^2
-$$
+- a **scale factor**
+- a **shift**
 
-Inputs:
+to clamp results back into **16-bit saturated outputs**.
 
-$$
-q_i = 0.8 \cos\left(\frac{2\pi i}{64}\right)
-$$
-
-Each PE uses:
-
-$$
-k_{pe} = 0.5 + \frac{pe}{128}
-$$
-
-The script generates:
-
-- 64 `.mif` weight files  
-- `inputs_s16.npy`  
-- `expected_s64.npy` (bit-accurate golden reference)  
+The **requantization scale factor** is efficiently stored as the **final row in each PE's memory block**.
 
 ---
 
-# Build & Simulation
+# Synthetic Stress Testing
 
-### Generate Test Data
+For **maximum-capacity synthesis** or **Quartus stress testing**, you can generate an arbitrary **N × M dense layer testcase**.
+
+Example:
 
 ```bash
-python generate_test.py
+# Generate a fully-connected 64x64 testcase
+python generate_testcase.py --num_inputs 64 --num_outputs 64
 ```
-
-### Run ModelSim
-
-```tcl
-do run_layer.do
-```
-
-If verification passes:
-
-```
-SUCCESS! All 64 PE outputs match the Hamiltonian Reference.
-```
-
----
 
 # Performance Metrics
 
